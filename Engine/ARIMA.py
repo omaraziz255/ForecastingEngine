@@ -1,8 +1,8 @@
-from Engine.Forecast import *
+from Engine.Engine import *
 from statsmodels.tsa.api import SARIMAX
 
 
-class ARIMA(Forecast):
+class ARIMA(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

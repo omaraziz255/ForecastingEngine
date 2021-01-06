@@ -1,7 +1,7 @@
-from Engine.Forecast import *
+from Engine.Engine import *
 
 
-class Naive(Forecast):
+class Naive(Engine):
     def predict(self):
         for i in range(len(self.validation.columns)):
             if i == 0:

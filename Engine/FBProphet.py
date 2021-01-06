@@ -1,9 +1,9 @@
-from Engine.Forecast import *
+from Engine.Engine import *
 from fbprophet import Prophet
 import pandas as pd
 
 
-class FBProphet(Forecast):
+class FBProphet(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

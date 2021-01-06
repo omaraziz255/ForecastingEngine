@@ -1,7 +1,8 @@
 import abc
+import numpy as np
 
 
-class Forecast:
+class Engine:
     __metaclass__ = abc.ABCMeta
 
     def __init__(self, preprocessed_data):

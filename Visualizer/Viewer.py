@@ -12,11 +12,11 @@ import numpy as np
 from plotly.subplots import make_subplots
 
 
-class Visualizer:
+class Viewer:
     def __init__(self):
         pass
 
-    def display_sales(self, x, y=None):
+    def view_historical_data(self, x, y=None):
         fig = make_subplots(rows=1, cols=1)
         fig.add_trace(go.Scatter(x=np.arange(len(x)), y=x, showlegend=False, mode='lines+markers', name='Sample',
                                  marker=dict(color="lightskyblue")), row=1, col=1)
@@ -27,7 +27,7 @@ class Visualizer:
         fig.update_layout(height=1200, width=800, title_text=f"Sample Sales")
         fig.show()
 
-    def roll_avg(self, sales, prices, time, per_store=False, mean=False, store=None):
+    def view_charts(self, sales, prices, time, per_store=False, mean=False, store=None):
         d_cols = [c for c in sales.columns if 'd_' in c]
         past_sales = sales.set_index('id')[d_cols].T.merge(time.set_index('d')['date'], left_index=True,
                                                            right_index=True, validate='1:1').set_index('date')
@@ -87,26 +87,24 @@ class Visualizer:
         fig.show()
 
 
-
-
-#Test Code
+# Test Code
 
 d = Data("../Data/")
 p = Preprocessor(d)
-v = Visualizer()
+v = Viewer()
 x = p.load_sales(65, bgn=350, end=450)
-y = p.average_smoothing(x)
-# v.display_sales(x, y)
+y = p.preprocess_smooth(x)
+v.view_historical_data(x, y)
 
 x = p.data.sales_data
 y = p.data.selling_prices
 z = p.data.calendar
-# v.roll_avg(x, y, z, per_store=False, mean=True, store="wi")
+
 n = Naive(p.data)
-mv = MovingAverage(p.data,30)
-h = HoltLinear(p.data,30)
-e = ExponentialSmooth(p.data,30)
-a = ARIMA(p.data,30)
+mv = MovingAverage(p.data, 30)
+h = HoltLinear(p.data, 30)
+e = ExponentialSmooth(p.data, 30)
+a = ARIMA(p.data, 30)
 ph = FBProphet(p.data, 30)
 
 methods = [n, mv, h, e, a, ph]
@@ -116,9 +114,9 @@ for m in methods:
 pp = Postprocessor()
 losses = []
 for m in methods:
-    losses.append(pp.compute_loss(m.predictions, m.validation))
+    losses.append(pp.postprocess(m.predictions, m.validation))
 
 names = ["Naive approach", "Moving average", "Holt linear", "Exponential smoothing", "ARIMA", "Prophet"]
 v.visualize_loss(losses, names)
 
-# v.train_val_view(ph, 0, prediction=True)
+v.train_val_view(ph, 0, prediction=True)

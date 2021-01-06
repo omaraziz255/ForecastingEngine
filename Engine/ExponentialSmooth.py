@@ -1,8 +1,8 @@
-from Engine.Forecast import *
+from Engine.Engine import *
 from statsmodels.tsa.api import ExponentialSmoothing
 
 
-class ExponentialSmooth(Forecast):
+class ExponentialSmooth(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

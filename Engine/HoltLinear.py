@@ -1,7 +1,8 @@
-from Engine.Forecast import *
+from Engine.Engine import *
 from statsmodels.tsa.api import Holt
 
-class HoltLinear(Forecast):
+
+class HoltLinear(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window
