@@ -1,6 +1,10 @@
-from Engine.Engine import *
-from fbprophet import Prophet
+#!/usr/bin/env python
+# coding: utf8
+
 import pandas as pd
+from fbprophet import Prophet
+
+from forecaster.engine.engine import *
 
 
 class FBProphet(Engine):

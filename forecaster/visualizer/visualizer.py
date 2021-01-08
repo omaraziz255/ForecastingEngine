@@ -1,14 +1,8 @@
-from Preprocess.Preprocessor import Preprocessor
-from Postprocess.Postprocessor import Postprocessor
-from Data.Data import Data
-from Engine.Naive import *
-from Engine.MovingAverage import *
-from Engine.HoltLinear import *
-from Engine.ExponentialSmooth import *
-from Engine.FBProphet import *
-from Engine.ARIMA import *
-import plotly.graph_objects as go
+#!/usr/bin/env python
+# coding: utf8
+
 import numpy as np
+import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
@@ -85,38 +79,3 @@ class Viewer:
                           xaxis=dict(title="Method names"))
         fig.update_layout(barmode='group')
         fig.show()
-
-
-# Test Code
-
-d = Data("../Data/")
-p = Preprocessor(d)
-v = Viewer()
-x = p.load_sales(65, bgn=350, end=450)
-y = p.preprocess_smooth(x)
-v.view_historical_data(x, y)
-
-x = p.data.sales_data
-y = p.data.selling_prices
-z = p.data.calendar
-
-n = Naive(p.data)
-mv = MovingAverage(p.data, 30)
-h = HoltLinear(p.data, 30)
-e = ExponentialSmooth(p.data, 30)
-a = ARIMA(p.data, 30)
-ph = FBProphet(p.data, 30)
-
-methods = [n, mv, h, e, a, ph]
-for m in methods:
-    m.predict()
-
-pp = Postprocessor()
-losses = []
-for m in methods:
-    losses.append(pp.postprocess(m.predictions, m.validation))
-
-names = ["Naive approach", "Moving average", "Holt linear", "Exponential smoothing", "ARIMA", "Prophet"]
-v.visualize_loss(losses, names)
-
-v.train_val_view(ph, 0, prediction=True)

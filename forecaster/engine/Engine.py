@@ -1,5 +1,7 @@
+#!/usr/bin/env python
+# coding: utf8
+
 import abc
-import numpy as np
 
 
 class Engine:
