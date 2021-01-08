@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
+import numpy as np
 from statsmodels.tsa.api import ExponentialSmoothing
 
 from forecaster.engine.engine import *

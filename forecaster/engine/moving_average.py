@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # coding: utf8
 
+import numpy as np
+
 from forecaster.engine.engine import *
 
 
