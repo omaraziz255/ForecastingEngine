@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
+import numpy as np
 import pandas as pd
 from fbprophet import Prophet
 

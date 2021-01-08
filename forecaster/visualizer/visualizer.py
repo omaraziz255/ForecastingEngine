@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-class Viewer:
+class Visualizer:
     def __init__(self):
         pass
 
