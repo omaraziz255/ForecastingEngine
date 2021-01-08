@@ -1,5 +1,10 @@
-from engine.forecast import *
+#!/usr/bin/env python
+# coding: utf8
+
+from forecaster.engine.forecast import *
 from statsmodels.tsa.api import Holt
+import numpy as np
+
 
 class HoltLinear(Forecast):
     def __init__(self, preprocessed_data, window):

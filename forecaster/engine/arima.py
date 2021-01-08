@@ -1,5 +1,9 @@
-from engine.forecast import *
+#!/usr/bin/env python
+# coding: utf8
+
+from forecaster.engine.forecast import *
 from statsmodels.tsa.api import SARIMAX
+import numpy as np
 
 
 class ARIMA(Forecast):

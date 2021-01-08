@@ -1,4 +1,7 @@
-from engine.forecast import *
+#!/usr/bin/env python
+# coding: utf8
+
+from forecaster.engine.forecast import *
 from fbprophet import Prophet
 import pandas as pd
 
