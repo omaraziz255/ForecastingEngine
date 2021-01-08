@@ -1,4 +1,4 @@
-from Engine.Forecast import *
+from engine.forecast import *
 from fbprophet import Prophet
 import pandas as pd
 

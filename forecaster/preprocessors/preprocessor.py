@@ -1,5 +1,5 @@
 import numpy as np
-from Data.Data import Data
+from forecaster.data.data import Data
 import pywt
 
 

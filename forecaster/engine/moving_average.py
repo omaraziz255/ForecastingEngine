@@ -1,4 +1,4 @@
-from Engine.Forecast import *
+from engine.forecast import *
 
 
 class MovingAverage(Forecast):

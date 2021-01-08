@@ -1,12 +1,12 @@
-from Preprocess.Preprocessor import Preprocessor
-from Postprocess.Postprocessor import Postprocessor
-from Data.Data import Data
-from Engine.Naive import *
-from Engine.MovingAverage import *
-from Engine.HoltLinear import *
-from Engine.ExponentialSmooth import *
-from Engine.FBProphet import *
-from Engine.ARIMA import *
+from preprocess.preprocessor import Preprocessor
+from postprocess.postprocessor import Postprocessor
+from data.data import Data
+from engine.naive import *
+from engine.moving_average import *
+from engine.holt_linear import *
+from engine.exponential_smooth import *
+from engine.fb_prophet import *
+from engine.arima import *
 import plotly.graph_objects as go
 import numpy as np
 from plotly.subplots import make_subplots
@@ -91,7 +91,7 @@ class Visualizer:
 
 #Test Code
 
-d = Data("../Data/")
+d = Data("../data/")
 p = Preprocessor(d)
 v = Visualizer()
 x = p.load_sales(65, bgn=350, end=450)
