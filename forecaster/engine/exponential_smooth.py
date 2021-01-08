@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from forecaster.engine.forecast import *
 from statsmodels.tsa.api import ExponentialSmoothing
 
+from forecaster.engine.engine import *
 
-class ExponentialSmooth(Forecast):
+
+class ExponentialSmooth(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

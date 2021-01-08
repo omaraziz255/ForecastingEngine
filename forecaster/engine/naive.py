@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from forecaster.engine.forecast import *
+from forecaster.engine.engine import *
 
 
-class Naive(Forecast):
+class Naive(Engine):
     def predict(self):
         for i in range(len(self.validation.columns)):
             if i == 0:

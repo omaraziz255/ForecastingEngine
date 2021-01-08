@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from forecaster.engine.forecast import *
-from statsmodels.tsa.api import Holt
 import numpy as np
+from statsmodels.tsa.api import Holt
+
+from forecaster.engine.engine import *
 
 
-class HoltLinear(Forecast):
+class HoltLinear(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from forecaster.engine.forecast import *
-from fbprophet import Prophet
 import pandas as pd
+from fbprophet import Prophet
+
+from forecaster.engine.engine import *
 
 
-class FBProphet(Forecast):
+class FBProphet(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window

@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # coding: utf8
 
-import plotly.graph_objects as go
 import numpy as np
+import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-class Visualizer:
+class Viewer:
     def __init__(self):
         pass
 
-    def display_sales(self, x, y=None):
+    def view_historical_data(self, x, y=None):
         fig = make_subplots(rows=1, cols=1)
         fig.add_trace(go.Scatter(x=np.arange(len(x)), y=x, showlegend=False, mode='lines+markers', name='Sample',
                                  marker=dict(color="lightskyblue")), row=1, col=1)
@@ -21,7 +21,7 @@ class Visualizer:
         fig.update_layout(height=1200, width=800, title_text=f"Sample Sales")
         fig.show()
 
-    def roll_avg(self, sales, prices, time, per_store=False, mean=False, store=None):
+    def view_charts(self, sales, prices, time, per_store=False, mean=False, store=None):
         d_cols = [c for c in sales.columns if 'd_' in c]
         past_sales = sales.set_index('id')[d_cols].T.merge(time.set_index('d')['date'], left_index=True,
                                                            right_index=True, validate='1:1').set_index('date')

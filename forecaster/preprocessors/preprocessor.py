@@ -2,8 +2,9 @@
 # coding: utf8
 
 import numpy as np
-from forecaster.data.data import Data
 import pywt
+
+from forecaster.data.data import Data
 
 
 def maddest(d, axis=None):
@@ -20,14 +21,14 @@ class Preprocessor:
         d_cols = [c for c in sales.columns if 'd_' in c]
         return sales.loc[sales['id'] == ids[sales_idx]].set_index('id')[d_cols].values[0][slice(bgn, end)]
 
-    def denoise_signal(self, x, wavelet='db4', level=1):
+    def preprocess_denoise(self, x, wavelet='db4', level=1):
         coeff = pywt.wavedec(x, wavelet, mode='per')
         sigma = (1 / 0.6745) * maddest(coeff[-level])
         uthresh = sigma * np.sqrt(2 * np.log(len(x)))
         coeff[1:] = (pywt.threshold(i, value=uthresh, mode='hard') for i in coeff[1:])
         return pywt.waverec(coeff, wavelet, mode='per')
 
-    def average_smoothing(self, x, kernel_size=3, stride=1):
+    def preprocess_smooth(self, x, kernel_size=3, stride=1):
         sample = []
         start = 0
         end = kernel_size

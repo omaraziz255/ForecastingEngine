@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from forecaster.engine.forecast import *
-from statsmodels.tsa.api import SARIMAX
 import numpy as np
+from statsmodels.tsa.api import SARIMAX
+
+from forecaster.engine.engine import *
 
 
-class ARIMA(Forecast):
+class ARIMA(Engine):
     def __init__(self, preprocessed_data, window):
         super().__init__(preprocessed_data)
         self.window = window
